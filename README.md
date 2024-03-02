@@ -1,3 +1,5 @@
+![1_censored](https://github.com/moonhole0512/AI_ImageGallery/assets/44113963/2c4f59bc-7585-4515-b58c-06da868cbdf6)
+
 #사용방법
 
 1. 실행
