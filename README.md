@@ -79,7 +79,7 @@ Title : AI generated image
 
 
 ## <초기화방법>
-settings.txt (처음에 지정한 폴더 경로 기록)
-image_gallery.db (이미지 정리한 db)
-실행파일 경로에 상기 두개의 파일이 생성되어있을겁니다. 두개를 지우면 프로그램은 초기화됩니다.
+settings.txt (처음에 지정한 폴더 경로 기록)  
+image_gallery.db (이미지 정리한 db)  
+실행파일 경로에 상기 두개의 파일이 생성되어있을겁니다. 두개를 지우면 프로그램은 초기화됩니다.  
 ![image](https://github.com/user-attachments/assets/20704fc6-6d6f-4565-b803-5bac3513cf33)
