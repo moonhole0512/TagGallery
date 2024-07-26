@@ -1,4 +1,4 @@
-![1_censored](https://github.com/moonhole0512/AI_ImageGallery/assets/44113963/2c4f59bc-7585-4515-b58c-06da868cbdf6)
+<img width="1007" alt="4" src="https://github.com/user-attachments/assets/3ce9ae85-303e-43b5-9891-061d02481029">
 
 #사용방법
 
