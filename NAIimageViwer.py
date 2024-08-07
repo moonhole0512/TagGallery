@@ -7,6 +7,7 @@ from PIL import Image, ImageTk
 from datetime import datetime
 from tkinter import PhotoImage, Scrollbar, Canvas
 from tkinter import filedialog
+from tkinter import messagebox
 from subprocess import call
 
 
@@ -15,14 +16,16 @@ settings_file = "settings.txt" #세팅파일명
 db_file = "image_gallery.db" #DB 파일명
 image_file_path = "" # 분류할 이미지 경로
 des_file_path = "" # 분류된 이미지 경로
-imgProgram = ""
+#imgProgram = ""
+firstStart = False
 
 #####함수 선언부#####
 #초기 세팅 진행
 def initFirstStart():
-    global settings_file, db_file, image_file_path, des_file_path
+    global settings_file, db_file, image_file_path, des_file_path, firstStart
     #세팅파일이 없다면
     if not os.path.exists(settings_file):
+        firstStart = True
         # 파일 경로 선택을 위한 Tkinter 창 생성
         root = Tk()
         root.withdraw()  # 창이 표시되지 않도록 함
@@ -34,20 +37,20 @@ def initFirstStart():
         des_file_path = filedialog.askdirectory(title="분류된 이미지 경로 지정")
         
         # 이미지파일 여는 프로그램 지정
-        imgProgram = filedialog.askopenfilename(title="이미지 뷰어 지정",filetypes=[("Executable files", "*.exe"), ("All files", "*.*")])
+        #imgProgram = filedialog.askopenfilename(title="이미지 뷰어 지정",filetypes=[("Executable files", "*.exe"), ("All files", "*.*")])
 
         # 설정 파일에 경로 저장
         with open(settings_file, 'w') as file:
             file.write(f"imageFilePath={image_file_path}\n")
             file.write(f"desFilePath={des_file_path}\n")
-            file.write(f"imgProgram={imgProgram}\n")
+            #file.write(f"imgProgram={imgProgram}\n")
     else:
         # 설정 파일이 이미 있을 경우, 파일에서 경로 읽어오기
         with open(settings_file, 'r') as file:
             lines = file.readlines()
             image_file_path = lines[0].strip().split('=')[1]
             des_file_path = lines[1].strip().split('=')[1]
-            imgProgram = lines[2].strip().split('=')[1]
+            #imgProgram = lines[2].strip().split('=')[1]
 
     #DB 생성
     if not os.path.exists(db_file):
@@ -62,6 +65,9 @@ def initFirstStart():
                            platform TEXT)''')
         conn.commit()
         conn.close()
+        
+    if firstStart: #이유는 모르겠는데 root.destroy() 하니까 최초실행 버그 고쳐짐. 
+        root.destroy()
 
 #태그 추출 함수
 def read_info_from_image_stealth(image):
@@ -333,7 +339,7 @@ def classification():
     
     remove_empty_folders(image_file_path) #정리완료된 빈폴더 정리
     print(f"태그추출 실패 건수 : {errorcount}")
-
+    
 
 
 
